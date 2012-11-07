@@ -1,0 +1,28 @@
+.ui-cytoscape-fullscreen {
+	border-radius: 25px;
+	border: 2px solid #fff;
+	box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.25);
+	position: absolute;
+	bottom: 1em;
+	right: 1em;
+	margin: 0;
+	height: 50px;
+	width: 180px;
+	font-size: 12px;
+	background-color: Red;
+	color: #fff;
+	font-family: arial, helvetica, sans-serif;
+	line-height: 1;
+}
+
+
+.ui-cytoscape-fullscreen-static {
+	position: absolute;
+	left: 125px;
+	top: 125px;
+	background: transparent;
+	border: 0;
+	box-shadow: none;
+	height: 0;
+	width: 0;
+}

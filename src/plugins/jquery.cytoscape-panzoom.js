@@ -146,7 +146,7 @@ Depends on
 					
 					var zx, zy;
 					function zoomTo(level){
-						var cy = $container.cytoscape("get"); // Thanks dmackenzie1@github!
+						var cy = $container.cytoscape("get");
 						cy.zoom({
 							level: level,
 							renderedPosition: {
