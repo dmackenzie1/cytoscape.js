@@ -111,7 +111,8 @@ $(function(){
 		height = $container.height();
 		width = $container.width();
 		
-		//$container.cytoscapePanzoom();
+		$container.cytoscapePanzoom();
+		$container.cytoscapeFullscreen();
 		
 // 		$container.cytoscapeEdgehandles({
 // 			lineType: "straight",
