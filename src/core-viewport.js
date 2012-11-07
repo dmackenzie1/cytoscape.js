@@ -132,8 +132,8 @@
 			});
 
 			return this; // chaining
-		},
-		
+		},	
+
 		fit: function( elements, padding ){
 			if( $$.is.number(elements) && padding === undefined ){ // elements is optional
 				padding = elements;
@@ -173,7 +173,99 @@
 
 			return this; // chaining
 		},
-		
+        fitAnimated: function( elements, padding ){
+
+            var me = this;
+            var zoomSensitivity = 0.05;
+            var panSensitivity = 10;
+
+            var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+
+            window.requestAnimationFrame = requestAnimationFrame;
+
+            var updateZoom = function () {
+
+                if ($$.is.number(elements) && padding === undefined) { // elements is optional
+                    padding = elements;
+                    elements = undefined;
+                }
+
+                if (!me._private.panEnabled || !me._private.zoomEnabled) {
+                    return me;
+                }
+
+                var bb = me.boundingBox(elements);
+                var style = me.style();
+
+                var w = parseFloat(style.containerCss("width"));
+                var h = parseFloat(style.containerCss("height"));
+
+                var currentZoom = me._private.zoom;
+                var requestedZoom;
+
+                var currentPanX = me._private.pan.x;
+                var currentPanY = me._private.pan.y;
+                var requestedPanX;
+                var requestedPanY;
+
+                padding = $$.is.number(padding) ? padding : 0;
+
+                if (!isNaN(w) && !isNaN(h)) {
+                    requestedZoom = Math.min((w - 2 * padding) / bb.w, (h - 2 * padding) / bb.h);
+
+                    // crop zoom
+                    requestedZoom = requestedZoom > me._private.maxZoom ? me._private.maxZoom : requestedZoom;
+                    requestedZoom = requestedZoom < me._private.minZoom ? me._private.minZoom : requestedZoom;
+
+                    if (currentZoom < requestedZoom) {
+                        currentZoom = currentZoom + ((requestedZoom - currentZoom) / 4);
+                    } else {
+                        if (currentZoom > requestedZoom) {
+                            currentZoom = currentZoom - ((currentZoom - requestedZoom) / 4);
+                        }
+                    }
+                    me._private.zoom = currentZoom;
+
+                    requestedPanX = (w - currentZoom * (bb.x1 + bb.x2)) / 2;
+                    requestedPanY = (h - currentZoom * (bb.y1 + bb.y2)) / 2;
+
+                    if (currentPanX < requestedPanX) {
+                        currentPanX = currentPanX + ((requestedPanX - currentPanX) / 2);
+                    } else if (currentPanX > requestedPanX) {
+                        currentPanX = currentPanX - ((currentPanX - requestedPanX) / 2);
+                    }
+
+                    if (currentPanY < requestedPanY) {
+                        currentPanY = currentPanY + ((requestedPanY - currentPanY) / 2);
+                    } else if (currentPanY > requestedPanY) {
+                        currentPanY = currentPanY - ((currentPanY - requestedPanY) / 2);
+                    }
+
+
+                    me._private.pan = { // now pan to middle
+                        x: currentPanX,
+                        y: currentPanY
+                    };
+                }
+
+                me.trigger("pan zoom");
+
+                me.notify({ // notify the renderer that the viewport changed
+                    type: "viewport"
+                });
+
+                if (
+                (Math.abs(requestedZoom - currentZoom) >= zoomSensitivity) || (Math.abs(requestedPanX - currentPanX) >= panSensitivity) || (Math.abs(requestedPanY - currentPanY) >= panSensitivity)) {
+                    window.requestAnimationFrame(updateZoom);
+                } else {
+                    me.fit();
+                }
+            }
+
+            window.requestAnimationFrame(updateZoom);
+
+            return this; // chaining
+		},
 		minZoom: function( zoom ){
 			if( zoom === undefined ){
 				return this._private.minZoom;
