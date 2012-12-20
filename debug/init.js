@@ -2,22 +2,18 @@ $(function(){
 				
 	var height, width;
 	
-	window.options = {
-		renderer: {
-			name: "canvas"
-		},
-		layout: {
-			name: "grid"
-		},
-		style: cytoscape.stylesheet()
+	var defaultSty = cytoscape.stylesheet()
 			.selector("node")
 				.css({
 					"content": "data(id)",
-					"shape": "data(shape)"
+					"shape": "data(shape)",
+					"border-width": 3,
+					"background-color": "#DDD",
+					"border-color": "#555",
 				})
 			.selector("edge")
 				.css({
-					"width": "mapData(weight, 0, 100, 1, 5)",
+					"width": "mapData(weight, 0, 100, 1, 4)",
 					"target-arrow-shape": "triangle",
 					"source-arrow-shape": "circle"
 				})
@@ -46,9 +42,17 @@ $(function(){
 					"shape": "rectangle",
 					"width": 15,
 					"height": 15
-				})
-			
-		,
+				});
+	
+	window.options = {
+		renderer: {
+			name: "canvas"
+		},
+		layout: {
+			name: "grid"
+		},
+		style: defaultSty,
+		
 		elements: {
 			nodes: [
 			], 
@@ -65,8 +69,8 @@ $(function(){
 	};
 	
 	var cliques = 2;
-	var numNodes = 16;
-	var numEdges = 32;
+	var numNodes = 32;
+	var numEdges = 64;
 	
 	function randNodeId( clique ){
 		var min = numNodes * clique / cliques;
@@ -198,18 +202,23 @@ $(function(){
 			});
 		});
 
-/*
+
+//		$container2.cy(options);
+
+
 		$container2.cy({
 			elements: {
-				nodes: [ { data: { id: 'n0' } }, { data: { id: 'n1' } } ],
-				edges: [ { data: { id: 'n0n1', source: 'n0', target: 'n1' } } ]
+				nodes: [ { data: { id: '0' } }, { data: { id: '1' } } ],
+				edges: [ { data: { id: '2', source: '0', target: '1' } } ]
 			},
-
+			style: defaultSty,
+			
 			ready: function(){
 				window.cy2 = this;
 			}
 		});
-*/		
+
+		
 		$("#remove-elements-button").click(function(){
 			var n = number("nodes");
 			var e = number("edges");
