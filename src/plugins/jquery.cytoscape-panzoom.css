@@ -1,18 +1,12 @@
 .ui-cytoscape-panzoom {
-	border-radius: 25px;
-	border: 2px solid #fff;
-	box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.25);
 	position: absolute;
-	bottom: 1em;
-	right: 1em;
-	margin: 0;
-	height: 50px;
-	width: 180px;
 	font-size: 12px;
-	background: rgba(0, 0, 0, 0.85);
 	color: #fff;
 	font-family: arial, helvetica, sans-serif;
 	line-height: 1;
+	color: #666;
+	font-size: 11px;
+	z-index: 99999;
 }
 
 .ui-cytoscape-panzoom-zoom-button {
@@ -20,16 +14,22 @@
 	padding: 3px;
 	text-align: center;
 	position: absolute;
-	top: 4px;
-	border-radius: 8px;
+	border-radius: 3px;
+	width: 10px;
+	height: 10px;
+	left: 16px;
+	background: #fff;
+	border: 1px solid #999;
+	margin-left: -1px;
+	margin-top: -1px;
+	z-index: 1;
+	box-shadow: 0 1px 4px rgba(0, 0, 0,  0.5);
 }
 
-.ui-cytoscape-panzoom-zoom-button .ui-icon {
-	background-image: url("../../debug/images/ui-icons_ffffff_256x240.png"); /* point to your copy of the img */
-}
-
-.ui-cytoscape-panzoom-static .ui-cytoscape-panzoom-zoom-button .ui-icon {
-	background-image: url("../../debug/images/ui-icons_000000_256x240.png"); /* point to your copy of the img */
+.ui-cytoscape-panzoom-zoom-button:active,
+.ui-cytoscape-panzoom-slider-handle:active,
+.ui-cytoscape-panzoom-slider-handle.active {
+	background: #ddd;
 }
 
 .ui-cytoscape-panzoom-pan-button {
@@ -40,15 +40,15 @@
 }
 
 .ui-cytoscape-panzoom-reset {
-	right: 50px;
+	top: 55px;
 }
 
 .ui-cytoscape-panzoom-zoom-in {
-	right: 8px;
+	top: 80px;
 }
 
 .ui-cytoscape-panzoom-zoom-out {
-	right: 95px;
+	top: 197px;
 }
 
 .ui-cytoscape-panzoom-pan-up {
@@ -59,7 +59,7 @@
 	height: 0; 
 	border-left: 5px solid transparent;
 	border-right: 5px solid transparent;
-	border-bottom: 5px solid #333;
+	border-bottom: 5px solid #666;
 }
 
 .ui-cytoscape-panzoom-pan-down {
@@ -70,7 +70,7 @@
 	height: 0; 
 	border-left: 5px solid transparent;
 	border-right: 5px solid transparent;
-	border-top: 5px solid #333;
+	border-top: 5px solid #666;
 }
 
 .ui-cytoscape-panzoom-pan-left {
@@ -81,7 +81,7 @@
 	height: 0; 
 	border-top: 5px solid transparent;
 	border-bottom: 5px solid transparent; 
-	border-right: 5px solid #333; 
+	border-right: 5px solid #666; 
 }
 
 .ui-cytoscape-panzoom-pan-right {
@@ -92,7 +92,7 @@
 	height: 0; 
 	border-top: 5px solid transparent;
 	border-bottom: 5px solid transparent;
-	border-left: 5px solid #333;
+	border-left: 5px solid #666;
 }
 
 .ui-cytoscape-panzoom-pan-indicator {
@@ -113,28 +113,53 @@
 }
 
 .ui-cytoscape-panzoom-slider {
-	background: #fff !impotant;
-	border-radius: 8px !important;
-	border: 0 !important;
-	height: 4px !important;
 	position: absolute;
-	bottom: 12px;
-	right: 12px;
-	width: 100px;
-	box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.5);
+	top: 97px;
+	left: 17px;
+	height: 100px;
+	width: 15px;
 }
 
-.ui-cytoscape-panzoom-slider .ui-slider-handle {
-	background: #000 !important;
-	border: 2px solid #fff !important;
-	border-radius: 10px !important;
-	outline: none !important;
-	height: 14px;
-	width: 14px;
+.ui-cytoscape-panzoom-slider-background {
 	position: absolute;
-	top: 50%;
-	margin-top: -8px;
-	box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+	top: 0;
+	width: 2px;
+	height: 100px;
+	left: 5px;
+	background: #fff;
+	box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.25);
+	border-left: 1px solid #999;
+	border-right: 1px solid #999;
+}
+
+.ui-cytoscape-panzoom-slider-handle {
+	position: absolute;
+	width: 16px;
+	height: 8px;
+	background: #fff;
+	border: 1px solid #999;
+	border-radius: 2px;
+	margin-left: -2px;
+	box-shadow: 0 1px 4px rgba(0, 0, 0,  0.5);
+	z-index: 999;
+	line-height: 8px;
+}
+
+.ui-cytoscape-panzoom-slider-handle .icon {
+	margin: 0 4px;
+}
+
+.ui-cytoscape-panzoom-no-zoom-tick {
+	position: absolute;
+	background: #666;
+	border: 1px solid #fff;
+	border-radius: 2px;
+	margin-left: -1px;
+	width: 8px;
+	height: 2px;
+	left: 3px;
+	z-index: 1;
+	margin-top: 3px;
 }
 
 .ui-cytoscape-panzoom-panner {
@@ -144,8 +169,10 @@
 	height: 40px;
 	width: 40px;
 	background: #fff;
-	box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
+	border: 1px solid #999;
+	box-shadow: 0 1px 4px rgba(0, 0, 0,  0.5);
 	border-radius: 40px;
+	margin-left: -1px;
 }
 
 .ui-cytoscape-panzoom-panner-handle {
@@ -159,79 +186,5 @@
 	z-index: 999;
 }
 
-.ui-cytoscape-panzoom-static {
-	position: absolute;
-	left: 25px;
-	top: 25px;
-	background: transparent;
-	border: 0;
-	box-shadow: none;
-	height: 0;
-	width: 0;
-}
 
-.ui-cytoscape-panzoom-static .ui-cytoscape-panzoom-panner {
-	top: 0;
-	left: 0;
-	border: 1px solid #888;
-	margin-left: -1px;
-	box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
-}
 
-.ui-cytoscape-panzoom-static .ui-cytoscape-panzoom-slider {
-	left: 11px;
-	top: 100px;
-	height: 100px !important;
-	width: 16px !important;
-	border-radius: 0 !important;
-	position: absolute;
-	background: #fff;
-}
-
-.ui-cytoscape-panzoom-static .ui-cytoscape-panzoom-slider .ui-slider-handle {
-	left: 50%;
-	margin-left: -9px;
-	margin-top: 0;
-	top: auto;
-	height: 6px;
-}
-
-.ui-cytoscape-panzoom-static .ui-cytoscape-panzoom-zoom-button {
-	border-radius: 4px;
-	height: 16px;
-	width: 16px;
-	border: 1px solid #ccc;
-	padding: 0;
-	left: 10px;
-	background: #fff;
-	box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
-	z-index: 1;
-	border: 1px solid #888;
-}
-
-.ui-cytoscape-panzoom-static .ui-cytoscape-panzoom-reset {
-	top: 55px;
-}
-
-.ui-cytoscape-panzoom-static .ui-cytoscape-panzoom-zoom-in {
-	top: 77px;
-}
-
-.ui-cytoscape-panzoom-static .ui-cytoscape-panzoom-zoom-out {
-	top: 209px;
-}
-
-.ui-cytoscape-panzoom-static .ui-cytoscape-panzoom-slider-background {
-	position: absolute;
-	left: 50%;
-	top: 0;
-	height: 100%;
-	width: 2px;
-	margin-left: -2px;
-	box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
-	border: 1px solid #888;
-	background: #fff;
-	padding-top: 6px;
-	margin-top: -6px;
-	padding-bottom: 8px;
-}
