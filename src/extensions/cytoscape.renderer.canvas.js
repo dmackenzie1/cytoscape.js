@@ -88,7 +88,7 @@
 			this.data.canvasRedrawReason[SELECT_BOX].push("viewchange");
 		}
 		
-		console.log("notify", params.type);
+		//console.log("notify", params.type);
 		
 		this.data.canvasNeedsRedraw[DRAG] = true; this.data.canvasRedrawReason[DRAG].push("notify");
 		this.data.canvasNeedsRedraw[NODE] = true; this.data.canvasRedrawReason[NODE].push("notify");
@@ -227,7 +227,7 @@
 					&& e.pageY > containerPageCoords[1] && e.pageY < containerPageCoords[1] + r.data.container.clientHeight) {
 					
 				} else {
-					console.log("outofbounds");
+					//console.log("outofbounds");
 				  
 					return;
 				}

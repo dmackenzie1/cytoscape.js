@@ -257,7 +257,7 @@
 				$container.cytoscape(function(e){
 					cy = this;
 					
-					console.log('handles on ready')
+					//console.log('handles on ready')
 
 					var transformHandler;
 					cy.bind("zoom pan", transformHandler = function(){
@@ -274,7 +274,7 @@
 							// also don't trigger when grabbing a node
 						} 
 						
-						console.log("mouseover startHandler %s %o", this.id(), this);
+						//console.log("mouseover startHandler %s %o", this.id(), this);
 						
 						$(window).unbind('mousedown', lastMdownHandler);
 
@@ -316,7 +316,7 @@
 								return; // only consider this a proper mousedown if on the handle
 							}
 
-							console.log("mdownHandler %s %o", node.id(), node);
+							//console.log("mdownHandler %s %o", node.id(), node);
 							
 							mdownOnHandle = true;
 							
@@ -325,7 +325,7 @@
 							node.addClass("ui-cytoscape-edgehandles-source");
 							
 							function doneMoving(dmEvent){
-								console.log("doneMoving %s %o", node.id(), node);
+								//console.log("doneMoving %s %o", node.id(), node);
 								
 								if( !mdownOnHandle ){
 									return;
@@ -350,7 +350,7 @@
 						}
 						
 						function moveHandler(e){
-							console.log("mousemove moveHandler %s %o", node.id(), node);
+							//console.log("mousemove moveHandler %s %o", node.id(), node);
 							
 							var x = e.pageX - $container.offset().left;
 							var y = e.pageY - $container.offset().top;
@@ -397,7 +397,7 @@
 						var node = this;
 						var target = this;
 
-console.log('mouseover hoverHandler')
+//console.log('mouseover hoverHandler')
 
 						if( disabled() || this.hasClass("ui-cytoscape-edgehandles-preview") ){
 							return; // ignore preview nodes
@@ -405,7 +405,7 @@ console.log('mouseover hoverHandler')
 						
 						if( mdownOnHandle ){ // only handle mdown case
 
-							console.log( 'mouseover hoverHandler %s $o', node.id(), node );
+							//console.log( 'mouseover hoverHandler %s $o', node.id(), node );
 
 							clearTimeout( hoverTimeout );
 							hoverTimeout = setTimeout(function(){
