@@ -76,11 +76,13 @@ CORE = $(SRC_DIR)/namespace.js\
 # extensions (list them manually if you don't want them all)	$(wildcard $(EXTENSIONS_DIR)/*)
 EXTENSIONS = $(EXTENSIONS_DIR)/cytoscape.renderer.null.js\
 	$(EXTENSIONS_DIR)/cytoscape.renderer.canvas.js\
+	$(EXTENSIONS_DIR)/cytoscape.renderer.svg.js\
 	$(EXTENSIONS_DIR)/cytoscape.layout.null.js\
 	$(EXTENSIONS_DIR)/cytoscape.layout.random.js\
 	$(EXTENSIONS_DIR)/cytoscape.layout.grid.js\
 	$(EXTENSIONS_DIR)/cytoscape.layout.preset.js\
 	$(EXTENSIONS_DIR)/cytoscape.layout.arbor.js\
+	$(EXTENSIONS_DIR)/cytoscape.layout.springy.js\
 
 # plugins (list them manually if you don't want them all)
 PLUGINS = $(wildcard $(PLUGINS_DIR)/*)
